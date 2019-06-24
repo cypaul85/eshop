@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+<title>Product Detail</title>
+</head>
+<body>
+<h2>상품정보</h2>
+<table>
+    <tr>
+        <td>
+            {% load static %}
+            {% static "" as baseUrl %}
+            <img src="{{baseUrl}}images/{{dto.picture_url}}" width="300px" height="300px"> 
+        </td>
+        <td align="center">
+            <table>
+                <tr>
+                    <td>상품명</td>
+                    <td>{{dto.product_name}}</td> 
+                </tr>
+                <tr>
+                    <td>가격</td>
+                    <td>{{dto.price}}</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>{{dto.description}}</td>
+                </tr>
+                    <td colspan="2">
+                        <form method="POST" action="cart_insert">
+                            <input type="hidden" name="product_id" value="{{dto.product_id}}">
+                            <select name="amount">
+                                {% for i in range %}
+                                <option value="{{i}}">{{i}}</option>
+                                {% endfor %}    
+                            </select>&nbsp;개
+                            <input type="submit" value="장바구니에 담기">
+                        </from>
+                    </td>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
